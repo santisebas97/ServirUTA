@@ -1,0 +1,136 @@
+:root {
+    --dark: #16191c;
+    --dark-x:#1e2126;
+    --light: #ffffff;
+    
+}
+
+.btn{
+    margin-top: 5px;
+    border-radius: 15px;
+}
+
+body{
+    font-family: 'League Spartan', sans-serif;
+    font-weight:300;
+    color: var(--light);
+}
+
+.bg-dark{background-color: var(--dark) !important;}
+
+.form-control, .btn{
+    min-height: 3.125rem;
+    line-height: initial;
+}
+
+.img1{
+    
+    width:1280px;
+    height: 745px;
+    
+    background-size: cover;
+    background-position: center;
+    
+}
+
+.img7{
+    
+    width:1280px;
+    height: 745px;
+    
+    background-size: cover;
+    background-position: center;
+}
+
+.bg-dark{
+background-color: var(--dark) !important;
+background-image: url(/assets/dist/img/backregistro.jpg);
+background-repeat: no-repeat;
+background-attachment: fixed;
+background-size: cover;
+}
+
+
+
+.panel-heading{
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+#forget{
+    min-width: 100px;
+    margin-left:auto;
+    text-decoration: none;
+    cursor:pointer;
+}
+
+a:hover{
+    text-decoration:none;
+}
+
+.form-inline label{
+    padding-left:18px;
+    margin:0;
+    cursor: pointer;
+}
+
+.panel{
+    min-height: 380px;
+    box-shadow:20px 20px 80px rgb(218,218,218);
+    border-radius:5px;
+    margin-top: 100px;;
+}
+
+.input-field{
+    background-color: #faf4f4;
+    border-radius:5px;
+    padding:5px;
+    display:flex;
+    align-items: center;
+    cursor:pointer;
+    border:1px solid #ddd;
+    color:#000000;
+}
+
+.input-field.error{
+    border:1px solid red;
+    color:red;
+}
+
+input[type='text'],
+input[type='password']{
+    border: none;
+    outline: none;
+    box-shadow: none;
+    width:100%;
+}
+
+.fa-eye-slash.btn{
+    border:none;
+    outline:none;
+    box-shadow: none;
+}
+
+.google_img{
+    width:40px;
+    height: 40px;
+    object-fit:cover;
+    border-radius:50%;
+    position: relative
+}
+
+.bordert{
+    border-top: 1px solid #aaa;
+    position: relative;
+}
+
+.bordert:after{
+    content:  "© 2024";
+    position: absolute;
+    top:-13px;
+    left: 45%;
+    background-color: #000000;
+    padding: 0 8px;
+}
+
+

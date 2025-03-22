@@ -1,0 +1,49 @@
+
+.container{
+  width: 100%;
+  display: flex;
+  max-width: 1100px;
+}
+
+.card{
+  width:100%;
+  margin:20px;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0px 1px 10px rgba(0, 0, 0, 2);
+  cursor: default;
+  transition: all 400ms ease;
+}
+
+.card:hover{
+  box-shadow: 5px 5px 20px rgba(0,0,0,0,4);
+  transform: translateY(-3%);
+  background-color: rgb(206, 219, 16);
+}
+.card .contenido{
+  padding:30px;
+  text-align: start;
+}
+
+
+
+form.user {
+  .form-control-user {
+    font-size: 0.8rem;
+    border-radius: 10rem;
+    padding: 1.5rem 1rem;
+  }
+
+  .btn-user {
+    font-size: 1rem;
+    border-radius: 10rem;
+    padding: 0.75rem 1rem;
+  }
+
+}
+
+body{
+  font-family: 'League Spartan', sans-serif;
+  font-weight:100;
+  color: var(--dark);
+}

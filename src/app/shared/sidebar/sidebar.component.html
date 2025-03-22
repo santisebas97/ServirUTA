@@ -1,0 +1,98 @@
+<!-- Main Sidebar Container -->
+<aside id="sidebara" class="main-sidebar #sidebara sidebar-dark-info elevation-4">
+    <!-- Brand Logo -->
+    <a routerLink="/home" class="brand-link">
+      <img src="./assets/dist/img/logoFinal.png" alt="Logo servirUTA" class="brand-image img-circle elevation-3"
+        style="opacity: .8">
+      <span class="brand-text font font-weight-light">servirUTA</span>
+    </a>
+  
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="./assets/dist/img/usuario.png" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="#" class="d-block">{{Nombre}}</a>
+        </div>
+      </div>
+  
+      <ng-container *ngIf="role==='transportista'">
+        <!-- Sidebar Menu -->
+<nav class="mt-2">
+  <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" data-accordion="false">
+    <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
+    <li class="nav-item has-treeview" *ngFor="let item of menuItemsTransportistas">
+      <a href="" class="nav-link ">
+        <i class="{{item.icono}}"></i>
+        <p class="ml-2">
+          {{item.titulo}}
+          <span class="badge badge-primary ml-2">{{item.submenu.length}}</span>
+          <i class="right fas fa-angle-left"></i>
+        </p>
+      </a>
+      <ul class="nav nav-treeview">
+        <li class="nav-item" *ngFor="let subMenuItem of item.submenu">
+          <a [routerLink]="subMenuItem.url" class="nav-link" style="cursor: pointer;">
+            <i class="{{subMenuItem.icono}} ml-1"></i>
+            <p class="ml-2">{{subMenuItem.titulo}}</p>
+          </a>
+        </li>
+      </ul>
+    </li>
+    <li class="nav-item" style="cursor: pointer;">
+      <a (click)="signOut()" class="nav-link ">
+        <i class="fas fa-sign-out-alt ml-2"></i>
+        <p class="ml-2">
+          Cerrar sesión
+        </p>
+      </a>
+    </li>
+  </ul>
+</nav>
+<!-- /.sidebar-menu -->
+      </ng-container>
+
+
+      <ng-container *ngIf="role==='estudiante'">
+        <!-- Sidebar Menu -->
+<nav class="mt-2">
+  <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" data-accordion="false">
+    <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
+    <li class="nav-item has-treeview" *ngFor="let item of menuItemsEstudiantes">
+      <a href="" class="nav-link ">
+        <i class="{{item.icono}}"></i>
+        <p class="ml-2">
+          {{item.titulo}}
+          <span class="badge badge-primary ml-2">{{item.submenu.length}}</span>
+          <i class="right fas fa-angle-left"></i>
+        </p>
+      </a>
+      <ul class="nav nav-treeview">
+        <li class="nav-item" *ngFor="let subMenuItem of item.submenu">
+          <a [routerLink]="subMenuItem.url" class="nav-link" style="cursor: pointer;">
+            <i class="{{subMenuItem.icono}} ml-1"></i>
+            <p class="ml-2">{{subMenuItem.titulo}}</p>
+          </a>
+        </li>
+      </ul>
+    </li>
+    <li class="nav-item" style="cursor: pointer;">
+      <a (click)="signOut()" class="nav-link ">
+        <i class="fas fa-sign-out-alt ml-2"></i>
+        <p class="ml-2">
+          Cerrar sesión
+        </p>
+      </a>
+    </li>
+  </ul>
+</nav>
+<!-- /.sidebar-menu -->
+      </ng-container>
+
+
+    </div>
+    <!-- /.sidebar -->
+  </aside>

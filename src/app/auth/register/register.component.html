@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>register</title>
+</head>
+<body >
+
+  <div class="outer">
+    <div class="container" >
+      <div class="row py-3">
+        <div class="offset-md-2 col-lg-5 col-md-7 offset-lg-4 offset-md-3">
+          <div class="panel border bg-white">
+            <div class="panel-heading" >
+              <h3 class="pt-3 font-weight-bold">Registrese en la aplicación</h3>
+            </div>
+            <div class="panel-body p-3">
+              <form [formGroup]="registerForm" >
+
+                <div class="form-group pt-3">
+                  <div class="input-field">
+                    <span class="fa fa-users p-2"></span>
+                    <select class="select" formControlName="rol" placeholder="seleccione un rol">
+                      <option value="" disabled selected hidden>Quiero registrarme como</option>
+                      <option value="estudiante" type="text">Estudiante</option>
+                      <option value="transportista" type="text">Transportista</option>
+                    </select>
+                  </div>
+                </div>
+                <small *ngIf="registerForm.controls['rol'].dirty && registerForm.hasError('required','rol')" class="text-danger">*Seleccione un rol</small>
+
+                <div class="form-group pt-3">
+                  <div class="input-field">
+                    <span class="fa fa-user p-2"></span>
+                    <input formControlName="nombre" type="text" placeholder="Nombre">
+                  </div>
+                </div>
+                <small *ngIf="registerForm.controls['nombre'].dirty && registerForm.hasError('required','nombre')" class="text-danger">*Ingrese el nombre</small>
+                
+
+                <div class="form-group pt-3">
+                    <div class="input-field">
+                      <span class="fa fa-user p-2"></span>
+                      <input formControlName="apellido" type="text" placeholder="Apellido">
+                    </div>
+                </div>
+                <small *ngIf="registerForm.controls['apellido'].dirty && registerForm.hasError('required','apellido')" class="text-danger">*Ingrese el apellido</small>
+                
+                  
+                <div class="form-group pt-3">
+                    <div class="input-field">
+                      <span class="fa fa-phone p-2"></span>
+                      <input formControlName="telefono" type="text" placeholder="Teléfono">
+                    </div>
+                </div>
+                <small *ngIf="registerForm.controls['telefono'].dirty && registerForm.hasError('required','telefono')" class="text-danger">*Ingrese un numero de teléfono</small>
+
+                <div class="form-group pt-3">
+                    <div class="input-field">
+                      <span class="fa fa-location-arrow p-2"></span>
+                      <input formControlName="direccion" type="text" placeholder="Direccion o ruta">
+                    </div>
+                </div>
+                <small *ngIf="registerForm.controls['direccion'].dirty && registerForm.hasError('required','direccion')" class="text-danger">*Ingrese su domicilio</small>
+
+                <div class="form-group pt-3">
+                    <div class="input-field">
+                      <span class="fa fa-at p-2"></span>
+                      <input formControlName="email" type="text" placeholder="Correo electrónico">
+                    </div>
+                </div>
+                <small *ngIf="registerForm.controls['email'].dirty && registerForm.hasError('required','email')" class="text-danger">*Ingrese un correo electrónico</small>
+
+                <div class="form-group pt-3">
+                    <div class="input-field">
+                      <span class="fa fa-lock p-2"></span>
+                      <input formControlName="passwd" [type]="type" placeholder="Contraseña (letras y números)">
+                      <span (click)="EsconderContrasena()" class="fa {{eyeIcon}}"></span>
+                    </div>
+                </div>
+                <small *ngIf="registerForm.controls['passwd'].dirty && registerForm.hasError('required','passwd')" class="text-danger">*Ingrese una contraseña</small>
+
+                
+
+                   
+                  
+                   
+                <button type="submit" class="btn btn-warning btn-block mt-4 w-100" (click)="onRegister()">Registrarse</button>
+
+                <div class="text-center pt-4 text-muted"> Ya tienes una cuenta? <a id="forgot" routerLink="/login">Inicia sesión</a></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

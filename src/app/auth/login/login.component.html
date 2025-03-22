@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <!-- link para fuentes -->
+  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@300&display=swap" rel="stylesheet">
+  <title>Login</title>
+</head>
+<body class="bg-dark">
+  <section>
+    <div class="row g-0"> <!-- el g-0 es para que no tenga barra desplazamiento en el eje x -->
+
+      <!-- aqui comienza el carusel -->
+      <div class="col-lg-7 d-none d-lg-block">
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+              
+            </ol>
+            <div class="carousel-inner carousel-fade">
+              <div class="carousel-item min-vh-100 active">
+                <img class=" img1 d-block w-100 img-fluid" src="./assets/dist/img/img1.jpg" alt="Primera imagen">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Prueba la aplicación</h5>
+                    <p>Accede desde cualquier dispositivo en cualquier lugar solo ingresando serviruta.eu en tu navegador web</p>
+                </div>
+              </div>
+
+              <div class="carousel-item min-vh-100">
+                <img class=" img7 d-block w-100 img-fluid" src="./assets/dist/img/img7.jpg" alt="Segunda imagen">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Transportista o estudiante?</h5>
+                    <p>Puedes acceder mediante tu correo si ya estas registrado/a o crear una nueva cuenta como transportista o como estudiante</p>
+                </div>
+              </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Anterior</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Siguiente</span>
+            </a>
+          </div>
+    </div>
+    <!-- aqui termina el carusel -->
+
+      <div class="col-lg-5 d-flex flex-column align-items-end min-vh-100"> <!--el dflex alinea los elementos del form-->
+        <div class="px-lg-4 pt-lg-4 pb-lg-3 p-4 img-fluid w-100"><!-- px= padding a los lados de 5  arriba de 4 y abajo de 3 y ocupe 4 espacios-->
+          <img src="./assets/dist/img/logoFinal.png" class="imguta d-block w-25" alt="LogoServirUTA">
+        </div>
+        <div class="px-lg-5 py-lg-4 pb-lg-3 p-4 w-100 align-self-center">
+          <h1 class="mb-4 ">Ingrese a la app servirUTA</h1>
+          
+          <!--aqui empieza el form-->
+          <form [formGroup]="loginForm" class="mb-5"> <!--le pasamos la propiedad loginForm al formgroup-->
+            <div class="form-group pt-2">
+              <label class="form-label font-weight-bold">Correo Electrónico</label>
+              <div class="input-field" >
+                <span class="fa fa-user p-2"></span>
+                <input formControlName="email" type="text" placeholder="Ingresa tu correo">
+              </div>
+            </div>
+            <small *ngIf="loginForm.controls['email'].dirty && loginForm.hasError('required','email')" class="text-danger">*El correo es requerido</small>
+
+            <div class="form-group pt-2">
+              <label class="form-label font-weight-bold">Contraseña</label>
+              <div class="input-field" >
+                <span class="fa fa-lock p-2"></span>
+                <input formControlName="passwd" [type]="type" placeholder="Ingresa tu contraseña"> <!--el type pasa al .ts para crear una variable tipo password-->
+                <span (click)="EsconderContrasena()" class="fa {{eyeIcon}}"></span> <!--el eyeIcon es la propiedad que creamos en el .ts y el esconder es un metodo-->
+              </div>
+            </div>
+            <small *ngIf="loginForm.controls['passwd'].dirty && loginForm.hasError('required','passwd')" class="text-danger">*La contraseña es requerida</small>
+
+            <div class="form-inline fr mt-3">
+              <a href="#" id="forgot" data-toggle="modal" data-target="#exampleModal" class="font-weight-bold">Olvidaste la contraseña?</a>
+            </div>
+            
+           
+            <button (click)="onLogin()" type="submit" class="btn btn-warning btn-block w-100 ">Ingresar</button><!--w-100 es para que ocupe todo el tamaño del div, al disabled se le manda el estado del form: si es invalido no se activa el boton-->
+            <div class="text-center pt-4 text-muted"> No tienes una cuenta? <a id="forgot" routerLink="/register">Regístrate</a></div>
+        </form>
+        <!--aqui termina el form-->
+
+        <!--aqui empieza el login usando google-->
+        <div class="mx-3 my-2 py-2 bordert">
+          <div class="text-center py-2">
+            
+          </div>
+        </div>
+
+        </div>
+      </div>
+    </div>
+    
+  </section>
+  
+</body>
+<!-- Modal para restablecimiento de contraseña -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <p class="modal-title" id="exampleModalLabel"><span style="font-size: 25px; font-weight: 500">Olvidaste tu contraseña?</span><br>
+        <small>Porfavor ingresa tu correo para enviar el link de reinicio de contraseña</small></p>
+        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group pt-3">
+          <div class="input-field">
+            <span class="fa fa-at p-2"></span>
+            <input [(ngModel)]="resetPasswordEmail" (ngModelChange)="checkValidEmail($event)" type="text" placeholder="Correo electrónico">
+          </div>
+          <small *ngIf="!resetPasswordEmail" class="text-danger">*El correo es requerido</small>
+          <small *ngIf="!isValidEmail && resetPasswordEmail" class="text-danger">*El correo no es válido</small>
+        </div>
+    </div>
+      <div class="modal-footer">
+        <button id="closeBtn" type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-warning" (click)="confirmToSend()" class="btn btn-primary">Enviar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</html>
+
+
+
+
+

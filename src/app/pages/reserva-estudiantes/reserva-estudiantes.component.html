@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="row">
+        <div class="col-lg-12">
+
+          <!-- Masthead-->
+<header class=" text-dark text-center">
+  <div class="container d-flex align-items-center flex-column">
+      <!-- Masthead Heading-->
+      <h1 class="masthead-heading mb-0">Tus reservas</h1>
+      <!-- Masthead Subheading-->
+      <p class="masthead-subheading font-weight-light mb-4">Reservas creadas por los estudiantes de la aplicación, da clic en enviar mensaje para contactarse con ellos</p>
+  </div>
+</header>
+            <div *ngFor="let user of reservas" class="card">
+              
+                <div class="card-body">
+                  <div class="text-section">
+                    <h5 class="card-title">Estudiante: {{user.nombreEst}}</h5>
+                  <p class="card-text">Hizo la reserva en el recorrido:  {{user.nombreRec}}</p>
+                  <p class="card-text">Hora de ruta:  {{user.horaRec}}</p>
+                  </div>
+                  <div class="cta-section">
+                    <div>Fecha de reserva: {{user.fechaRes}}</div>
+                    <div>Id de reserva: {{user.idRes}}</div>
+                    <a href="https://api.whatsapp.com/send?phone={{593+user.telefonoEst}}&text=Hola,%20soy%20un%20usuario%20de%20servirUTA%20y%20necesito%20m%C3%A1s%20informaci%C3%B3n%20del%20recorrido" class="btn btn-success w-100 mb-2"> <span class="fa fa-whatsapp"></span>  Enviar un mensaje</a>
+                    <button class="btn btn-danger w-100 mb-2 " (click)="capturarID(user.idRes)" data-toggle="modal" data-target="#exampleModal"><span class="fa fa-trash"></span>  Eliminar reserva</button>
+                  </div>
+                </div>
+                
+            </div>
+
+             <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"></h5><span style="font-size: 25px; font-weight: 500">Eliminar Reserva</span><br>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+          <p>Está seguro de eliminar la reserva: {{this.idreservaEliminada}}</p>
+        
+      </div>
+      <div class="modal-footer">
+        <button id="closeBtn" type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
+        <button type="button" (click)="eliminarReserva()" class="btn btn-danger">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+        </div>
+    
+    
+</body>
+</html>

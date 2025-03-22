@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="row g-0">
+        <div class="col-lg-5 d-flex flex-column px-lg-5 py-lg-4 pb-lg-3 p-4 w-100">
+            <!-- Masthead-->
+<header class=" text-dark text-center">
+    <div class="container d-flex align-items-center flex-column">
+        <!-- Masthead Heading-->
+        <h1 class="masthead-heading mb-0">Registre su ruta</h1>
+        <!-- Masthead Subheading-->
+        <p class="masthead-subheading font-weight-light mb-4">Para crear una ruta se debe registrar al menos una buseta</p>
+    </div>
+</header>
+
+<form [formGroup]="recorridoForm" class="user">
+    <div class="form-group">
+        <label class="form-label font-weight">Numero de recorrido</label>
+        <input type="number" formControlName="numrec" class="form-control form-control-user"
+             aria-describedby="emailHelp"
+            placeholder="Ejm: 001,002,004">
+    </div>
+
+
+    <div class="form-group">
+        <label class="form-label font-weight-bold">Nombre del recorrido</label>
+        <input type="name" formControlName="nombrerec" class="form-control form-control-user"
+            id="exampleInputEmail" aria-describedby="emailHelp"
+            placeholder="Ejm: AMBATO - BAÑOS">
+    </div>
+
+    <div class="form-group">
+        <label class="form-label font-weight-bold">Dias de ruta</label>
+        <input type="name" formControlName="fecharec" class="form-control form-control-user"
+            id="exampleInputEmail" aria-describedby="emailHelp"
+            placeholder="Ejm: Lunes a viernes">
+    </div>
+
+    <div class="form-group">
+        <label class="form-label font-weight-bold">Hora de salida</label>
+        <input type="time" formControlName="horarec" class="form-control form-control-user"
+            id="exampleInputEmail" aria-describedby="emailHelp"
+            placeholder="Ejm: 7AM, 10PM, 12AM">
+    </div>
+
+    <div class="form-group">
+        <label class="form-label font-weight-bold">Costo</label>
+        <input type="text" formControlName="preciorec" class="form-control form-control-user"
+            id="exampleInputEmail" aria-describedby="emailHelp"
+            placeholder="Ejm: 0.50, 1.00, 1.50">
+    </div>
+
+    <div class="form-group">
+            <label class="form-label font-weight-bold">Buseta</label>
+        <select name="buseta" formControlName="idbus" class="select form-control form-control-select" placeholder="seleccione una buseta registrada" >
+            <option value="0" disabled selected hidden>Seleccione una buseta</option>
+            <option *ngFor="let b of buseta" value="{{b.idBus}}"> {{b.placa}} {{b.modelo}}</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label class="form-label font-weight-bold">Descripción</label>
+        <input type="text" formControlName="descripcion" class="form-control form-control-user"
+            placeholder="Agregue una pequeña descripcion sobre su recorrido">
+    </div>
+
+    <button (click)="registrarRecorrido()"  class="btn btn-warning btn-user btn-block">
+        Finalizar recorrido
+    </button>
+    <hr>
+</form>
+        </div>
+        <!--div para la parte del mapa-->
+        <div class="col-lg-7 d-flex flex-column">
+            
+            <div class="btn btn-group">
+            <button (click)="mostrarRuta()" class="btn btn-outline-success">Ver ruta</button><!--w-100 es para que ocupe todo el tamaño del div, al disabled se le manda el estado del form: si es invalido no se activa el boton-->
+            <button (click)="limpiarRuta()" class="btn btn-outline-danger" >Limpiar ruta</button>
+            </div>
+            <div class="p-4">
+                <div id="map-container">
+                    <div id="map">
+                        
+                      </div>
+                      <img width="100" alt="Angular Logo" src="./assets/dist/img/logoFinal.png" alt="logo"> 
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

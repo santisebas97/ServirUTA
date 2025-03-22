@@ -1,0 +1,7 @@
+#bread{
+background-color: var(--dark) !important;
+background-image: url(/assets/dist/img/backregistro.jpg);
+background-repeat: no-repeat;
+background-attachment: fixed;
+background-size: cover;
+}

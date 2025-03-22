@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="row g-0">
+        <div class="col-lg-10 d-lg-block">
+            <!-- Masthead-->
+<header class=" text-dark text-center">
+    <div class="container d-flex align-items-center flex-column">
+        <!-- Masthead Heading-->
+        <h1 class="masthead-heading mb-0">Recorridos Disponibles</h1>
+        <!-- Masthead Subheading-->
+        <p class="masthead-subheading font-weight-light mb-1">Rutas creadas por los conductores registrados en la aplicación</p>
+    </div>
+</header>
+
+<!--div para la parte del mapa-->
+<div class="d-flex flex-column">
+    <div class="p-4">
+        <div id="map-container">
+            <div id="mapa">
+                
+              </div>
+        </div>
+    </div>
+</div>
+
+
+            <div class="d-flex justify-content flex-wrap">
+                
+                <div *ngFor="let rec of recorridos" class="card mx-4 shadow-lg p-3 mb-4" style="width:28rem;">
+                    <img src="./assets/dist/img/mapbox.png" class="card-img-top" alt="">
+                    <div class="card-body">
+                        <h5 class="card-title mb-4">Recorrido {{rec.numRec}} : {{rec.nombreRec}}</h5>
+                        <h4 class="card-text">Dias de ruta: {{rec.fechaRec}}</h4>
+                        <h4 class="card-text">Precio:  {{rec.precioRec}}   $</h4>
+                        <div *ngFor="let bus of cardBuseta">
+                            <h4 class="card-text">Placa Vehículo:  {{bus.placa}}</h4>
+                            <h4 class="card-text mb-3">Capacidad:  {{bus.capacidad}} asientos</h4>
+                        </div>
+                        <h4 class="card-text">Descripción:  {{rec.descripcion}}</h4>    
+                    </div>
+                    <div class="d-flex justify-content-around mb-1">
+                        <h3>Salida: {{rec.horaRec}}</h3>
+                        <button (click)="mostrarRuta(rec.idRec)" class="btn btn-info">Ver en mapa</button>
+                        <button data-toggle="modal" (click)="capturarIdRec(rec.idRec)" data-target="#exampleModal" class="btn btn-warning">Reservar asiento</button>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+</div>
+
+        <!-- div del comentario-->
+        <div class="col-lg-2 bg-dark">
+            <div class="container">
+                <div class="row comentarios justify-content-center">
+                    <div class="col justify-content-end ">
+                        <form [formGroup]="comentarioForm" action=""  class="form_comentarios d-flex justify-content-end flex-wrap">
+                            <div class="form-group">
+                                <textarea formControlName="comentarioj" name="" id="" placeholder="Escriba un comentario..."></textarea>
+                                <button (click)="guardarComentario()" class="btn" type="button">Comentar</button>
+                            </div>
+                        </form>
+
+                        <div class="media" *ngFor="let com of comentarios">
+                            <div  class="media_body">
+                                <p>{{com.comentario1}}</p>
+                                <div class="botones text-right">
+                                    <p>{{com.fecha}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+    </div>
+
+    
+
+    <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"></h5><span style="font-size: 25px; font-weight: 500">Pedir una reservación</span><br>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          
+            <p>Esta seguro/a que quiere solicitar una reservación a esta ruta?</p>
+          
+        </div>
+        <div class="modal-footer">
+            <button id="closeBtn" type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+          <button  (click)="crearReserva()" type="button" class="btn btn-success" >Solicitar Reserva</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

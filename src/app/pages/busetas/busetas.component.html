@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buseta</title>
+</head>
+<body>
+    <div class="row g-0">
+        <!-- aqui empieza el lado de registro borrar el min-vh-100 si no se ve bien-->
+        <div class="col-lg-7 d-flex flex-column  px-lg-5 py-lg-4 pb-lg-3 p-4 w-100">
+<!-- Masthead-->
+<header class=" text-dark text-center">
+    <div class="container d-flex align-items-center flex-column">
+        <!-- Masthead Heading-->
+        <h1 class="masthead-heading mb-0">Registre una buseta</h1>
+        <!-- Masthead Subheading-->
+        <p class="masthead-subheading font-weight-light mb-4">Para crear recorridos se debe registrar al menos una buseta</p>
+    </div>
+</header>
+
+<form [formGroup]="busetaForm" class="user">
+    <div class="form-group">
+        <label class="form-label font-weight">Placa del vehiculo</label>
+        <input formControlName="placa" type="text" class="form-control form-control-user" placeholder="Ejm: COL-057">
+    </div>
+
+    <div class="form-group">
+        <label class="form-label font-weight-bold">Capacidad (Numero de asientos)</label>
+        <input type="text" formControlName="capacidad" class="form-control form-control-user" placeholder="Ejm: 15, 20, 25 etc">
+    </div>
+
+    <div class="form-group">
+        <label class="form-label font-weight-bold">Modelo del vehiculo</label>
+        <input type="text" formControlName="modelo" class="form-control form-control-user" placeholder="Ejm: Forza, Chevrolet">
+    </div>
+
+    <div class="form-group">
+        <label class="form-label font-weight-bold">Año</label>
+        <input type="text" formControlName="anio" class="form-control form-control-user" placeholder="Ejm: 2010, 2012, 2013">
+    </div>
+
+    <!-- para subir la foto
+    <div class="form-group">
+        <label class="form-label font-weight-bold">Subir imagen</label>
+        <input (change)="capturarImagen($event)" class="form-control form-control-user" type="file" id="exampleInputEmail" placeholder="Ejm: subir imagen">
+        <div *ngIf="previsualizacion">
+            <img width="100px" [src]="previsualizacion" alt="imagenBuseta">
+        </div>
+    </div>-->
+    
+    <button type="button" (click)="registrarBuseta()" class="btn btn-warning btn-user btn-block">
+        Registrar Buseta
+    </button>
+    <hr>
+</form>
+</div>
+        <div class="col-lg-5 d-lg-block ">
+            <header class=" text-dark text-center">
+                <div class="container d-flex align-items-center flex-column">
+                    
+                    <h2 class="masthead-heading mb-0">Busetas registradas</h2>
+                </div>
+            </header>
+            
+                <div class="d-flex justify-content flex-wrap ">
+                    <div *ngFor="let user of cardBuseta"  class="card mx-3 my-3 shadow-lg p-2 mb-3 bg-white rounded" style="width: 15rem;">
+                        <div >
+                            
+                        </div>
+                        <div class="card-header p-0">
+                            <img src="./assets/dist/img/img1.jpg" class="card-img-top" alt="transportista">
+                        </div>
+                        <div class="card-body">
+                            
+                            <h5 class="card-title">Placa:{{user.placa}}</h5>
+                            <h6 class="card-text">ID: {{user.idBus}} </h6>
+                            <h6 class="card-text">Total asientos: {{user.capacidad}} </h6>
+                            <h6 class="card-text">Modelo: {{user.modelo}} {{user.anio}}</h6> 
+                        </div>
+            
+                        <div class="card-footer">
+                            <button class="btn btn-danger btn-block w-100" (click)="capturarID(user.idBus)" data-toggle="modal" data-target="#exampleModal" type="submit"><span class="fa fa-trash"></span> Eliminar</button>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+        <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"></h5><span style="font-size: 25px; font-weight: 500">Eliminar Buseta</span><br>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          
+            <p>Está seguro de eliminar la buseta: {{this.idBusetaEliminada}}</p>
+          
+        </div>
+        <div class="modal-footer">
+          <button id="closeBtn" type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
+          <button type="button" (click)="eliminarBuseta()" class="btn btn-danger">Eliminar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
